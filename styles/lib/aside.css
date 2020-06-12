@@ -1,5 +1,7 @@
 aside {
+    background: var(--cl-primary);
     color: var(--cl-primary-alt);
+    box-shadow: 5px 0px 5px 0px var(--cl-primary-shadow);
 
     position: absolute;
     top: 0;

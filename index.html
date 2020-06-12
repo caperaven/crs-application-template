@@ -7,9 +7,6 @@
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="/styles/styles.css" rel="stylesheet">
-    <link rel="preload" href="/styles/views/about.css" as="style">
-    <link rel="preload" href="/styles/views/404.css" as="style">
-
     <title>My Application</title>
 
     <style>
@@ -45,7 +42,7 @@
     </svg>
 
     <header>
-        <button class="icon" click.setValue="$globals.isMenuOpen = !$globals.isMenuOpen"><svg><use xlink:href="#menu" /></svg></button>
+        <button class="icon" click.setValue="$globals.isMenuOpen = !$globals.isMenuOpen" classlist.if="$globals.isMenuOpen == true ? 'highlight-fill'"><svg><use xlink:href="#menu" /></svg></button>
         <h1>My Application</h1>
     </header>
 

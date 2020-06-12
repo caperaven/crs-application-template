@@ -1,4 +1,4 @@
-# CRS Single Page Starter
+# CRS Application Starter
 
 ## Introduction
 

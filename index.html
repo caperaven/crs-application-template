@@ -50,6 +50,11 @@
     <main>
         <aside classlist.if="$globals.isMenuOpen == true ? 'open'" click.setValue="$globals.isMenuOpen = !$globals.isMenuOpen">
             <nav>
+                <ol>
+                    <template for="route of routes">
+                        <li><a href.one-way="route.hash">${route.title}</a></li>
+                    </template>
+                </ol>
             </nav>
         </aside>
         <crs-router routes="app/routes.json"></crs-router>

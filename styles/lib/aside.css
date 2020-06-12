@@ -4,7 +4,8 @@ aside {
     left: 0;
     bottom: 0;
     width: 15rem;
-    background: silver;
+    background: var(--cl-primary);
+    color: var(--cl-primary-alt);
     transform: translateX(-20rem);
     transition: transform 0.3s;
     will-change: transition;

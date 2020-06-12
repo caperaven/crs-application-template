@@ -1,5 +1,6 @@
 html {
     --cl-primary: #0098e0;
+    --cl-primary-alt: white;
     --cl-error: #e91e63;
     --cl-border: #dadada;
     --cl-focus: #0098e0;

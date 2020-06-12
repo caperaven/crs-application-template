@@ -1,0 +1,16 @@
+aside {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 15rem;
+    background: silver;
+    transform: translateX(-20rem);
+    transition: transform 0.3s;
+    will-change: transition;
+    z-index: 1;
+}
+
+aside.open {
+    transform: translateX(0);
+}

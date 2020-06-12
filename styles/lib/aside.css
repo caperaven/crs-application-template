@@ -42,7 +42,6 @@ aside.open:after {
 }
 
 aside nav li {
-    padding: 0.5rem;
     cursor: pointer;
 }
 
@@ -51,6 +50,8 @@ aside nav li:hover {
 }
 
 aside nav a, aside nav a:visited {
+    padding: 0.5rem;
     color: var(--cl-primary-alt);
     text-decoration: none;
+    display: block;
 }

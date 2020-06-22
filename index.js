@@ -2,7 +2,7 @@ import {ViewBase} from "./node_modules/crs-binding/crs-view-base.js";
 
 export default class IndexViewModel extends ViewBase {
     async connectedCallback() {
-        super.connectedCallback();
+        await super.connectedCallback();
         this.routes = this._getRoutes();
     }
 

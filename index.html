@@ -17,8 +17,8 @@
             fill: var(--text);
             padding: 0;
             margin: 0;
-            width: 100vw;
-            height: 100vh;
+            width: 100%;
+            height: 100%;
         }
 
         body {
@@ -47,7 +47,7 @@
     </header>
 
     <main>
-        <aside classlist.if="$globals.isMenuOpen == true ? 'open'" click.setValue="$globals.isMenuOpen = !$globals.isMenuOpen">
+        <aside classlist.if="$globals.isMenuOpen ==  true? 'open'" click.setValue="$globals.isMenuOpen = !$globals.isMenuOpen">
             <nav>
                 <ol>
                     <template for="route of routes">

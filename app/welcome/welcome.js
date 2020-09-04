@@ -1,6 +1,4 @@
-import {ViewBase} from "./../../node_modules/crs-binding/crs-view-base.js";
-
-export default class Welcome extends ViewBase {
+export default class Welcome extends crsbinding.classes.ViewBase {
     async connectedCallback() {
         await super.connectedCallback();
     }

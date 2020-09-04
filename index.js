@@ -1,6 +1,4 @@
-import {ViewBase} from "./node_modules/crs-binding/crs-view-base.js";
-
-export default class IndexViewModel extends ViewBase {
+export default class IndexViewModel extends crsbinding.classes.ViewBase {
     async connectedCallback() {
         await super.connectedCallback();
         crsbinding.data.updateUI(this, "routes");

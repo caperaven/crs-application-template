@@ -7,3 +7,7 @@
 @import "./lib/buttons.css";
 @import "./lib/aside.css";
 @import "./lib/color-classes.css";
+
+*:focus {
+    border: solid 1px blue;
+}

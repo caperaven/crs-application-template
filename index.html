@@ -49,7 +49,7 @@
     </main>
 
     <aside classlist.if="$globals.isMenuOpen ==  true? 'open'" click.setValue="$globals.isMenuOpen = !$globals.isMenuOpen">
-        <nav>
+        <nav id="main-menu" aria-label="main menu">
             <ol>
                 <template for="route of routes">
                     <li><a href.one-way="route.hash">${route.title}</a></li>

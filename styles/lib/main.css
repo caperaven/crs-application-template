@@ -1,5 +1,11 @@
 main {
     position: relative;
+    outline: none;
+}
+
+main:focus {
+    outline: none;
+    border-width: 0;
 }
 
 crs-router {

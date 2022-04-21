@@ -23,14 +23,14 @@
         "babel-jest": "^24.9.0",
         "glob": "^7.1.4",
         "html-minifier": "^4.0.0",
-        "jest": "^24.9.0",
+        "jest": "^27.5.1",
         "mkdirp": "^0.5.1",
         "rollup": "^1.23.0",
         "rollup-plugin-terser": "^7.0.2"
     },
     "dependencies": {
-        "crs-binding": "0.0.220",
-        "crs-modules": "^1.0.11",
-        "crs-router": "^0.0.75"
+        "crs-binding": "^0.0.257",
+        "crs-modules": "^1.0.17",
+        "crs-router": "^0.0.78"
     }
 }

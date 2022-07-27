@@ -5,6 +5,11 @@
 
 import { copy, emptyDir, ensureDir } from "https://deno.land/std@0.149.0/fs/mod.ts";
 import * as esbuild from 'https://deno.land/x/esbuild@v0.14.50/mod.js'
+import init, {minify} from "https://wilsonl.in/minify-html/deno/0.9.2/index.js";
+
+const encoder = new TextEncoder();
+const decoder = new TextDecoder();
+await init();
 
 async function createFolderStructure() {
     await ensureDir("./dist");
@@ -70,6 +75,7 @@ async function packageHTML(sourceFile, targetFile, minified) {
     let src = await Deno.readTextFile(sourceFile);
 
     if (minified == true) {
+        src = decoder.decode(minify(encoder.encode(src), { minify_css: true, minify_js: true, do_not_minify_doctype: true, keep_closing_tags: true }));
     }
 
     await Deno.writeTextFile(targetFile, src);
@@ -122,7 +128,7 @@ await packageFile("./app/form/form.js", "./dist/app/form/form.js", "js", "esm", 
 await packageFile("./app/welcome/welcome.js", "./dist/app/welcome/welcome.js", "js", "esm", true);
 
 // copy files
-await Deno.copyFile("./index.html", "./dist/index.html");
+await packageHTML("./index.html", "./dist/index.html", true);
 await Deno.copyFile("./favicon.ico", "./dist/favicon.ico");
 await copy("./packages", "./dist/packages");
 

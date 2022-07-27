@@ -1,15 +1,19 @@
-import {MyClass} from "../src/my-class.js";
+import { assert } from "https://deno.land/std@0.149.0/testing/asserts.ts";
+import { afterEach, beforeEach, describe, it} from "https://deno.land/std@0.149.0/testing/bdd.ts";
+import {MyClass} from "./../src/my-class.js";
 
-let instance;
+describe("my class tests", async () => {
+    let instance;
 
-beforeEach(() => {
-    instance = new MyClass();
-});
+    beforeEach(() => {
+        instance = new MyClass();
+    })
 
-afterEach(() => {
-    instance.dispose();
-});
+    afterEach(() => {
+        instance.dispose();
+    })
 
-test("my-class - constructed", () => {
-    expect(instance).not.toBeNull();
-});
+    it("my-class - constructed", async () => {
+        assert(instance != null);
+    })
+})

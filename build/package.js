@@ -4,7 +4,6 @@
  */
 
 import { copy, emptyDir, ensureDir } from "https://deno.land/std@0.149.0/fs/mod.ts";
-
 import * as esbuild from 'https://deno.land/x/esbuild@v0.14.50/mod.js'
 
 async function createFolderStructure() {
@@ -61,7 +60,16 @@ async function packageMarkup(sourceFile, targetFile, minified) {
             .split("\t").join("")
             .split("\r").join("")
             .split("\n").join("")
-            .split("  ").join(" ");
+            .split(" ").join("");
+    }
+
+    await Deno.writeTextFile(targetFile, src);
+}
+
+async function packageHTML(sourceFile, targetFile, minified) {
+    let src = await Deno.readTextFile(sourceFile);
+
+    if (minified == true) {
     }
 
     await Deno.writeTextFile(targetFile, src);
@@ -97,10 +105,10 @@ await createFolderStructure();
 await packageMarkup("./app/routes.json", "./dist/app/routes.json", true);
 
 // html files
-await packageMarkup("./app/404/404.html", "./dist/app/404/404.html", true);
-await packageMarkup("./app/about/about.html", "./dist/app/about/about.html", true);
-await packageMarkup("./app/form/form.html", "./dist/app/form/form.html", true);
-await packageMarkup("./app/welcome/welcome.html", "./dist/app/welcome/welcome.html", true);
+await packageHTML("./app/404/404.html", "./dist/app/404/404.html", true);
+await packageHTML("./app/about/about.html", "./dist/app/about/about.html", true);
+await packageHTML("./app/form/form.html", "./dist/app/form/form.html", true);
+await packageHTML("./app/welcome/welcome.html", "./dist/app/welcome/welcome.html", true);
 
 // css files
 await bundleCss("./styles/styles.css", "./dist/styles/styles.css", true);

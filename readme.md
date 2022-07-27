@@ -2,6 +2,9 @@
 
 ## Introduction
 
+This is a deno ready application template building vanilla web applications.  
+No frameworks just libraries.  
+
 This is a template application based on [CRS Starter](https://github.com/caperaven/crs-starter).  
 It includes the:
 1. [CRS Router](https://github.com/caperaven/crs-router)

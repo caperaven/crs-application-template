@@ -1,4 +1,10 @@
-import { emptyDir, ensureDir } from "https://deno.land/std@0.149.0/fs/mod.ts";
+/**
+ * Build script using deno
+ * https://droces.github.io/Deno-Cheat-Sheet/
+ */
+
+import { copy, emptyDir, ensureDir } from "https://deno.land/std@0.149.0/fs/mod.ts";
+
 import * as esbuild from 'https://deno.land/x/esbuild@v0.14.50/mod.js'
 
 async function createFolderStructure() {
@@ -6,6 +12,8 @@ async function createFolderStructure() {
     await emptyDir("./dist");
 
     await ensureDir("./dist/styles/views");
+    await ensureDir("./dist/components");
+    await ensureDir("./dist/src");
 
     for (const folder of ["404", "about", "form", "welcome"]) {
         await ensureDir(`./dist/app/${folder}`);
@@ -50,10 +58,10 @@ async function packageMarkup(sourceFile, targetFile, minified) {
 
     if (minified == true) {
         src = src
-            .split(" ").join("")
             .split("\t").join("")
             .split("\r").join("")
-            .split("\n").join("");
+            .split("\n").join("")
+            .split("  ").join(" ");
     }
 
     await Deno.writeTextFile(targetFile, src);
@@ -65,12 +73,23 @@ async function bundleJs(file, output, minified) {
         bundle: true,
         outfile: output,
         format: "esm",
-        minify: minified || true
+        minify: minified
     })
 
     console.log(result);
 }
 
+async function bundleCss(file, output, minified) {
+    const result = await esbuild.build({
+        entryPoints: [file],
+        bundle: true,
+        loader: {".css": "css"},
+        outfile: output,
+        minify: minified
+    })
+
+    console.log(result);
+}
 
 await createFolderStructure();
 
@@ -78,13 +97,13 @@ await createFolderStructure();
 await packageMarkup("./app/routes.json", "./dist/app/routes.json", true);
 
 // html files
-await packageMarkup("./index.html", "./dist/index.html", true);
 await packageMarkup("./app/404/404.html", "./dist/app/404/404.html", true);
 await packageMarkup("./app/about/about.html", "./dist/app/about/about.html", true);
 await packageMarkup("./app/form/form.html", "./dist/app/form/form.html", true);
 await packageMarkup("./app/welcome/welcome.html", "./dist/app/welcome/welcome.html", true);
 
 // css files
+await bundleCss("./styles/styles.css", "./dist/styles/styles.css", true);
 await packageMarkup("./styles/views/404.css", "./dist/styles/views/404.css", true);
 await packageMarkup("./styles/views/about.css", "./dist/styles/views/about.css", true);
 await packageMarkup("./styles/views/welcome.css", "./dist/styles/views/welcome.css", true);
@@ -95,6 +114,14 @@ await packageFile("./app/form/form.js", "./dist/app/form/form.js", "js", "esm", 
 await packageFile("./app/welcome/welcome.js", "./dist/app/welcome/welcome.js", "js", "esm", true);
 
 // copy files
+await Deno.copyFile("./index.html", "./dist/index.html");
 await Deno.copyFile("./favicon.ico", "./dist/favicon.ico");
+await copy("./packages", "./dist/packages");
+
+// components
+await packageFile("./components/component.js", "./dist/components/component.js", "js", "esm", true);
+
+// src
+await packageFile("./src/my-class.js", "./dist/src/my-class.js", "js", "esm", true);
 
 Deno.exit(0);

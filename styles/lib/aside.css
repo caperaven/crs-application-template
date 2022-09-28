@@ -11,7 +11,7 @@ aside {
     transform: translateX(-20rem);
     transition: transform 0.3s;
     will-change: transition;
-    z-index: 1;
+    z-index: 99999;
 }
 
 aside.open {
